@@ -18,7 +18,7 @@ public abstract class AbstractBaseService<E extends IBaseEntity> implements IBas
     @Override
     public int addBy(E entity) {
         if (null == entity) return 0;
-        return this.getRepo().add(entity);
+        return this.getRepo().addBy(entity);
     }
 
     @Override
@@ -40,7 +40,7 @@ public abstract class AbstractBaseService<E extends IBaseEntity> implements IBas
     @Override
     public int updateBy(E oldEntity, E newEntity) {
         if (null == oldEntity || null == newEntity) return 0;
-        return this.getRepo().modify(oldEntity, newEntity);
+        return this.getRepo().modifyBy(oldEntity, newEntity);
     }
 
     @Override
@@ -58,47 +58,32 @@ public abstract class AbstractBaseService<E extends IBaseEntity> implements IBas
     @Override
     public int deleteBy(E entity) {
         if (null == entity) return 0;
-        return this.getRepo().remove(entity);
-    }
-
-    @Override
-    public boolean existById(Serializable id) {
-        return null != this.queryById(id);
-    }
-
-    @Override
-    public boolean existBy(E entity) {
-        return null != this.queryBy(entity);
+        return this.getRepo().removeBy(entity);
     }
 
     @Override
     public E queryById(Serializable id) {
-        return (E) this.getRepo().getById(id);
-    }
-
-    @Override
-    public List<E> queryByIds(Set<? extends Serializable> ids) {
-        return this.getRepo().getByIds(ids);
+        return (E) this.getRepo().queryById(id);
     }
 
     @Override
     public E queryBy(E entity) {
-        return (E) this.getRepo().get(entity);
+        return (E) this.getRepo().queryOne(entity);
     }
 
     @Override
     public List<E> queryList(E entity) {
-        return this.getRepo().getList(entity);
+        return this.getRepo().queryList(entity);
     }
 
     @Override
     public List<E> queryAll() {
-        return this.getRepo().getAll();
+        return this.getRepo().queryAll();
     }
 
     @Override
     public PageData<E> queryPage(E entity, int pageNum, int pageSize) {
-        return this.getRepo().getPage(entity, pageNum, pageSize);
+        return this.getRepo().queryPage(entity, pageNum, pageSize);
     }
 
 }

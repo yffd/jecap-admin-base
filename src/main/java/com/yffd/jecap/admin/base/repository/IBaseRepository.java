@@ -9,28 +9,26 @@ import java.util.Set;
 
 public interface IBaseRepository<E extends IBaseEntity> {
 
-    int add(E entity);
+    int addBy(E entity);
 
-    int modify(E oldEntity, E newEntity);
+    int modifyBy(E oldEntity, E newEntity);
 
     int modifyById(E entity);
 
-    int remove(E entity);
+    int removeBy(E entity);
 
     int removeById(Serializable id);
 
     int removeByIds(Set<? extends Serializable> ids);
 
-    E get(E entity);
+    E queryById(Serializable id);
 
-    E getById(Serializable id);
+    E queryOne(E entity);
 
-    List<E> getByIds(Set<? extends Serializable> ids);
+    List<E> queryList(E entity);
 
-    List<E> getList(E entity);
+    List<E> queryAll();
 
-    List<E> getAll();
-
-    PageData<E> getPage(E entity, int pageNum, int pageSize);
+    PageData<E> queryPage(E entity, int pageNum, int pageSize);
 
 }

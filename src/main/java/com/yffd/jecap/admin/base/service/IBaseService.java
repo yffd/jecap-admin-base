@@ -26,15 +26,8 @@ public interface IBaseService<E extends IBaseEntity> {
     /** 删除-批量 */
     int deleteByIds(Set<Serializable> ids);
 
-    /** 存在 */
-    boolean existBy(E entity);
-    /** 存在 */
-    boolean existById(Serializable id);
-
     /** 查询-单个 */
     E queryById(Serializable id);
-    /** 查询-多个 */
-    List<E> queryByIds(Set<? extends Serializable> ids);
     /** 查询-单个 */
     E queryBy(E entity);
     /** 查询-列表 */

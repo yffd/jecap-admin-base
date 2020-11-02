@@ -14,13 +14,13 @@ public abstract class AbstractBaseRepo<E extends IBaseEntity> implements IBaseRe
     protected abstract IBaseDao<E> getDao();
 
     @Override
-    public int add(E entity) {
+    public int addBy(E entity) {
         if (null == entity) return 0;
         return this.getDao().addBy(entity);
     }
 
     @Override
-    public int modify(E oldEntity, E newEntity) {
+    public int modifyBy(E oldEntity, E newEntity) {
         if (null == oldEntity || null == newEntity) return 0;
         return this.getDao().modifyBy(oldEntity, newEntity);
     }
@@ -32,7 +32,7 @@ public abstract class AbstractBaseRepo<E extends IBaseEntity> implements IBaseRe
     }
 
     @Override
-    public int remove(E entity) {
+    public int removeBy(E entity) {
         if (null == entity) return 0;
         return this.getDao().removeBy(entity);
     }
@@ -50,36 +50,30 @@ public abstract class AbstractBaseRepo<E extends IBaseEntity> implements IBaseRe
     }
 
     @Override
-    public E get(E entity) {
+    public E queryOne(E entity) {
         if (null == entity) return null;
         return this.getDao().queryOne(entity);
     }
 
     @Override
-    public E getById(Serializable id) {
+    public E queryById(Serializable id) {
         if (null == id) return null;
         return this.getDao().queryById(id);
     }
 
     @Override
-    public List<E> getByIds(Set<? extends Serializable> ids) {
-        if (null == ids || ids.size() == 0) return Collections.emptyList();
-        return this.getDao().queryByIds(ids);
-    }
-
-    @Override
-    public List<E> getList(E entity) {
+    public List<E> queryList(E entity) {
         if (null == entity) return Collections.emptyList();
         return this.getDao().queryList(entity);
     }
 
     @Override
-    public List<E> getAll() {
+    public List<E> queryAll() {
         return this.getDao().queryAll();
     }
 
     @Override
-    public PageData<E> getPage(E entity, int pageNum, int pageSize) {
+    public PageData<E> queryPage(E entity, int pageNum, int pageSize) {
         return this.getDao().queryPage(entity, pageNum, pageSize);
     }
 
